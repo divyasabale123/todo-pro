@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>To-Do App (Pro) — Divya Sabale</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="page">
+    <aside class="panel">
+      <div class="brand">
+        <h1>TaskCraft</h1>
+        <small>By Divya Sabale</small>
+      </div>
+
+      <form id="taskForm" class="task-form" autocomplete="off">
+        <label>Title <input id="title" required placeholder="e.g. Prepare resume" /></label>
+        <label>Due date <input id="dueDate" type="date" /></label>
+        <label>Priority
+          <select id="priority">
+            <option value="low">Low</option>
+            <option value="medium" selected>Medium</option>
+            <option value="high">High</option>
+          </select>
+        </label>
+        <label>Notes <textarea id="notes" rows="3" placeholder="Optional details..."></textarea></label>
+        <div class="form-actions">
+          <button id="addBtn" type="submit" class="btn primary">Add Task</button>
+          <button id="clearBtn" type="button" class="btn">Clear</button>
+        </div>
+      </form>
+
+      <div class="filters">
+        <div class="filter-row">
+          <button class="chip active" data-filter="all">All</button>
+          <button class="chip" data-filter="active">Active</button>
+          <button class="chip" data-filter="completed">Completed</button>
+        </div>
+        <div class="filter-row">
+          <select id="priorityFilter">
+            <option value="all">All priorities</option>
+            <option value="high">High</option>
+            <option value="medium">Medium</option>
+            <option value="low">Low</option>
+          </select>
+          <input id="search" placeholder="Search tasks..." />
+        </div>
+        <div class="filter-row">
+          <button id="sortBtn" class="btn">Sort by due ↑</button>
+          <button id="exportBtn" class="btn">Export JSON</button>
+          <button id="importBtn" class="btn">Import JSON</button>
+          <input type="file" id="importFile" accept=".json" style="display:none" />
+        </div>
+      </div>
+
+      <footer class="panel-foot">
+        <small>Local demo — data stored in browser (localStorage).</small>
+      </footer>
+    </aside>
+
+    <section class="content">
+      <header class="header">
+        <h2>Tasks</h2>
+        <div id="stats" class="stats">0 tasks • 0 due</div>
+      </header>
+
+      <div id="taskList" class="task-list"></div>
+
+      <div id="empty" class="empty">No tasks yet — add your first task on the left.</div>
+    </section>
+  </main>
+
+  <!-- Edit Modal -->
+  <div id="modal" class="modal" aria-hidden="true">
+    <div class="modal-inner">
+      <h3>Edit Task</h3>
+      <label>Title <input id="editTitle" /></label>
+      <label>Due date <input id="editDue" type="date" /></label>
+      <label>Priority
+        <select id="editPriority">
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+      </label>
+      <label>Notes <textarea id="editNotes" rows="3"></textarea></label>
+      <div class="modal-actions">
+        <button id="saveEdit" class="btn primary">Save</button>
+        <button id="cancelEdit" class="btn">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
